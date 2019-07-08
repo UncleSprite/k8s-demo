@@ -6,7 +6,7 @@ metadata:
   labels:
     name: k8s-demo
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       name: k8s-demo
@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: k8s-demo
-        image: 	registry.cn-hangzhou.aliyuncs.com/spriteagile/k8s-demo
+        image: registry.cn-beijing.aliyuncs.com/spriteagile/k8s-demo:0.0.2
         resources: 
           requests:
             cpu: 200m
@@ -28,6 +28,8 @@ spec:
         ports:
         - containerPort: 80
         imagePullPolicy: Always
+      imagePullSecrets:
+      - name: myaliyunpullimagekey 
 ---
 
 kind: Service
